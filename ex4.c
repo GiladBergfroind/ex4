@@ -129,7 +129,7 @@ void task2HumanPyramid() {
             }
         }
     if (validation == 0) {
-        printf("The totla weight on each cheerleader is:");
+        printf("The total weight on each cheerleader is:\n");
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j <= i; j++)
@@ -451,3 +451,4 @@ void task5CrosswordGenerator() {
         printf("This crossword cannot be solved.\n");
     }
 }
+
