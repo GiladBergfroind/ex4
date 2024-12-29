@@ -173,9 +173,12 @@ void task2HumanPyramid() {
             if ( c == target)
                 return 1;
             return 0;
+
          }
     }
+//return 0;
 }
+
 
     void task3ParenthesisValidator()
     {
