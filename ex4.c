@@ -129,6 +129,7 @@ void task2HumanPyramid() {
             }
         }
     if (validation == 0) {
+        printf("The totla weight on each cheerleader is:");
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j <= i; j++)
@@ -176,7 +177,7 @@ void task2HumanPyramid() {
 
          }
     }
-return 0;
+//return 0;
 }
 
 
@@ -299,7 +300,7 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
         int dimension,counter = 0;
         printf("Please enter the board dimensions:\n");
         scanf("%d",&dimension);
-        printf("Please enter the %d*%d puzzle board\n", dimension, dimension);
+        printf("Please enter a %d*%d puzzle board\n", dimension, dimension);
         char board[dimension][dimension], solvedBoard[dimension][dimension],colors[dimension],
         colorsOriginal[dimension];
         for (int i = 0; i < dimension; i++) {
@@ -447,6 +448,6 @@ void task5CrosswordGenerator() {
     if (solveCrossword(boardSize, totalWords, totalSlots, crosswordBoard, wordList, 0, usedWords, 0, slotInstructions)) {
         printCrossword(boardSize, crosswordBoard);
     } else {
-        printf("The crossword cannot be solved.\n");
+        printf("This crossword cannot be solved.\n");
     }
 }
