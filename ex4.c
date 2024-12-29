@@ -176,7 +176,7 @@ void task2HumanPyramid() {
 
          }
     }
-//return 0;
+return 0;
 }
 
 
