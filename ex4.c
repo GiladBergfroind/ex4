@@ -302,7 +302,13 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
     array[row][column] = 0;
     return initArrayChar(dimension,array,column+1,row);
 }
-
+int init1DArray(int size,char array[size],int row)
+{
+if (row == size)
+    return 1;
+array[row] = 0;
+    return init1DArray(size,array,row+1);
+}
 
 
     void task4QueensBattle()
@@ -313,6 +319,9 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
         printf("Please enter a %d*%d puzzle board:\n", dimension, dimension);
         char board[dimension][dimension], solvedBoard[dimension][dimension],colors[dimension],
         colorsOriginal[dimension];
+        init1DArray(dimension,colorsOriginal,0);
+        init1DArray(dimension,colors,0);
+        initArrayChar(dimension,board,0,0);
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 scanf(" %c",&board[i][j]);
