@@ -1,7 +1,7 @@
 /******************
 Name: Gilad Bergfroind
 ID: 331749978
-Assignment: ex4 
+Assignment: ex4
 *******************/
 #include <stdio.h>
 #include <string.h>
@@ -234,48 +234,47 @@ int isSolutionRight(int size,char array[size],int counter) {
 
 //function that checks if there is a given value in a given array and returns it's palce,
 //if the value isn't in the array the function return -1.
-int findValue(int size,char array[size],int value,int counter,char tempChar) {
+int findValue(int size,char array[size],int value,int counter ) {
     if (counter == size) return -1;
     if (array[counter] == value)
     {
-        tempChar = value;
         return counter;
     }
-    return (findValue(size,array,value,counter+1,tempChar));
+    return (findValue(size,array,value,counter+1));
 }
 
 //function that checks if a given block is available.
 int availableBlocks(int dimension,char board[dimension][dimension],int row, int column,
-    char colors[dimension],char solvedBoard[dimension][dimension],char tempChar) {
+    char colors[dimension],char solvedBoard[dimension][dimension] ) {
     return (!isQueenInColumn(0, column,dimension,solvedBoard)&&
-        (colors[findValue(dimension,colors,board[row][column],0,tempChar)] !='1')
+        (colors[findValue(dimension,colors,board[row][column],0)] !='1')
         &&!isQueenWithinTouch(row,column,dimension,solvedBoard)&&solvedBoard[row][column] != 'X');
 
 }
 
 //the recursive function.
 int solution(int dimension,char board[dimension][dimension],int row, int column,
-    char colors[dimension],char solvedBoard[dimension][dimension],char tempChar,char colorsOriginal[dimension]) {
+    char colors[dimension],char solvedBoard[dimension][dimension] ,char colorsOriginal[dimension]) {
     if (row == dimension) //there are queens in all of the rows.
         return 1;
     if (column == dimension) //there is a column without a queen.
         return 0;
-    if (availableBlocks(dimension,board,row,column,colors,solvedBoard,tempChar)) {
+    if (availableBlocks(dimension,board,row,column,colors,solvedBoard)) {
         solvedBoard[row][column] = 'X'; //marks the queen spot.
-        colors[findValue(dimension,colors,board[row][column],0,tempChar)] ='1'; //marks the color in the colors array.
-        if (solution(dimension,board,row+1,0,colors,solvedBoard,tempChar,colorsOriginal) == 0)
+        colors[findValue(dimension,colors,board[row][column],0)] ='1'; //marks the color in the colors array.
+        if (solution(dimension,board,row+1,0,colors,solvedBoard,colorsOriginal) == 0)
             //call for recursive function in the next row.
         {
             if (isSolutionRight(dimension,colors,0) == 1) //checks if soltion is right
                 return 0;
             solvedBoard[row][column] = '0'; //if we got here this means that the last queen is not in the right place,
             //therefor we mark the spot with 0 to know that the queen is not there anymore.
-            colors[findValue(dimension,colorsOriginal,board[row][column],0,tempChar)] =
-                colorsOriginal[findValue(dimension,colorsOriginal,board[row][column],0,tempChar)];
+            colors[findValue(dimension,colorsOriginal,board[row][column],0)] =
+                colorsOriginal[findValue(dimension,colorsOriginal,board[row][column],0)];
             //sets the value of the removed queen in the colors array back to his original color.
         }
     }
-        return solution(dimension,board,row,column+1,colors,solvedBoard,tempChar,colorsOriginal);
+        return solution(dimension,board,row,column+1,colors,solvedBoard,colorsOriginal);
     }
 
 //function that sets all of the values in an array to 0.
@@ -298,12 +297,12 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
         printf("Please enter the board dimensions:\n");
         scanf("%d",&dimension);
         printf("Please enter the %d*%d puzzle board\n", dimension, dimension);
-        char board[dimension][dimension], solvedBoard[dimension][dimension],colors[dimension],tempChar,
+        char board[dimension][dimension], solvedBoard[dimension][dimension],colors[dimension],
         colorsOriginal[dimension];
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 scanf(" %c",&board[i][j]);
-                if (findValue(dimension,colors,board[i][j],0,tempChar) == -1) { //search for a new color
+                if (findValue(dimension,colors,board[i][j],0) == -1) { //search for a new color
                     colors[counter] = board[i][j];
                     colorsOriginal[counter] = colors[counter];
                     counter++;
@@ -311,7 +310,7 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
             }
         }
     initArrayChar(dimension,solvedBoard,0,0);
-    if ((solution(dimension,board,0,0,colors,solvedBoard,tempChar,colorsOriginal)==0)
+    if ((solution(dimension,board,0,0,colors,solvedBoard,colorsOriginal)==0)
         &&(isSolutionRight(dimension,colors,0)==1)) {
         printf("Solution:\n");
         for (int i = 0; i < dimension; i++) {
@@ -448,4 +447,3 @@ void task5CrosswordGenerator() {
         printf("The crossword cannot be solved.\n");
     }
 }
-
