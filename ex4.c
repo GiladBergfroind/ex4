@@ -15,6 +15,17 @@ void task2HumanPyramid();
 void task3ParenthesisValidator();
 void task4QueensBattle();
 void task5CrosswordGenerator();
+void printMenu()
+{
+    printf("Choose an option:\n"
+               "1. Robot Paths\n"
+               "2. The Human Pyramid\n"
+               "3. Parenthesis Validation\n"
+               "4. Queens Battle\n"
+               "5. Crossword Generator\n"
+               "6. Exit\n");
+
+}
 struct slotsPlaces {
     int row;
     int column;
@@ -24,16 +35,10 @@ struct slotsPlaces {
 };
 int main()
 {
+    printMenu();
     int task = -1;
     do
     {
-        printf("Choose an option:\n"
-               "1. Robot Paths\n"
-               "2. The Human Pyramid\n"
-               "3. Parenthesis Validation\n"
-               "4. Queens Battle\n"
-               "5. Crossword Generator\n"
-               "6. Exit\n");
 
 
         if (scanf("%d", &task))
@@ -45,18 +50,23 @@ int main()
                 break;
                 case 1:
                 task1RobotPaths();
+                printMenu();
                 break;
             case 2:
                 task2HumanPyramid();
+                printMenu();
                 break;
             case 3:
                 task3ParenthesisValidator();
+                printMenu();
                 break;
             case 4:
                 task4QueensBattle();
+                printMenu();
                 break;
             case 5:
                 task5CrosswordGenerator();
+                printMenu();
                 break;
             default:
                 printf("Please choose a task number from the list.\n");
@@ -181,15 +191,14 @@ return 0;
 }
 
 
-    void task3ParenthesisValidator()
-    {
+    void task3ParenthesisValidator() {
     char c;
     printf("Please enter a term for validation:\n");
     scanf("%c",&c);
     if (pv('\n')) // call for recursive function with \n as the target
         printf("The parentheses are balanced correctly.\n");
     else
-        printf("The parentheses are not balanced correctly.\n");
+    printf("The parentheses are not balanced correctly.\n");
     }
 
 //function that checks if there is a queen in some given column.
@@ -300,7 +309,7 @@ int initArrayChar(int dimension,char array[dimension][dimension],int column,int 
         int dimension,counter = 0;
         printf("Please enter the board dimensions:\n");
         scanf("%d",&dimension);
-        printf("Please enter a %d*%d puzzle board\n", dimension, dimension);
+        printf("Please enter a %d*%d puzzle board:\n", dimension, dimension);
         char board[dimension][dimension], solvedBoard[dimension][dimension],colors[dimension],
         colorsOriginal[dimension];
         for (int i = 0; i < dimension; i++) {
