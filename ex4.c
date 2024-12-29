@@ -70,6 +70,7 @@ int main()
                 break;
             default:
                 printf("Please choose a task number from the list.\n");
+                printMenu();
                 break;
             }
         }
